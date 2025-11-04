@@ -1,0 +1,33 @@
+.products__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.products__item {
+  width: 100%;
+  max-width: 300px;
+  padding: 7px;
+}
+
+.products__title {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.products__description {  
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  color: inherit;
+}
+
+@media screen and (min-width: 768px) {
+  .products__list {
+    justify-content: center;
+  }
+  
+}

@@ -1,0 +1,17 @@
+.footer {
+  flex: 0 0 auto;
+  height: 100px;
+  padding: 15px 0;
+  color: var(--color-grey-200);
+  background-color: var(--color-grey-800);
+}
+
+.footer__text {
+  text-align: center;
+}
+
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

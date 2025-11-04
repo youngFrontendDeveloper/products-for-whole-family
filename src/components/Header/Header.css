@@ -1,0 +1,14 @@
+.header {
+  flex: 0 0 auto;
+  height: 100px;
+  margin-bottom: 30px;
+  padding: 15px 0;
+  color: var(--foreground-primary);
+  background-color: var(--header-background);
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
