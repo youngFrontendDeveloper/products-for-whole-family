@@ -6,6 +6,9 @@ import ProductsPage from "../ProductsPage/ProductsPage.tsx";
 import ProductsItemPage from "../ProductsItemPage/ProductsItemPage.tsx";
 import HomePage from "../HomePage/HomePage.tsx";
 import Layout from '../Layout/Layout.tsx';
+import Meta from "../../utils/Meta/Meta.tsx";
+import NotFoundPage from "../NotFoundPage/NotFoundPage.tsx";
+import CreateProductPage from "../CreateProductPage/CreateProductPage.tsx";
 
 export default function App() {
     return (
@@ -14,6 +17,10 @@ export default function App() {
                 path="/"
                 element={
                     <Layout>
+                        <Meta
+                            title="Home | Продукты для всей семьи"
+                            description="Тестовое задание от компании Экосистема Альфа"
+                        />
                         <HomePage />
                     </Layout>
                 }
@@ -23,6 +30,10 @@ export default function App() {
                 path="/products"
                 element={
                     <Layout>
+                        <Meta
+                            title="Продукты | Продукты для всей семьи"
+                            description="Продукты разных брендов для всей семьи"
+                        />
                         <ProductsPage />
                     </Layout>
                 }
@@ -32,10 +43,40 @@ export default function App() {
                 path="/product/:id"
                 element={
                     <Layout>
+                        <Meta
+                            title="Отдельный продукт  | Продукты для всей семьи"
+                            description="Продукты разных брендов для всей семьи"
+                        />
                         <ProductsItemPage />
                     </Layout>
                 }
             />
+
+            <Route
+                path="/create-product"
+                element={
+                    <Layout>
+                        <Meta
+                            title="Создать продукт  | Продукты для всей семьи"
+                            description="Создать новый продукт"
+                        />
+                        <CreateProductPage />
+                    </Layout>
+                }
+            />
+            <Route
+                path="*"
+                element={
+                    <Layout>
+                        <Meta
+                            title="Страница не найдена | Продукты для всей семьи"
+                            description="Такая страница не найдена"
+                        />
+                        <NotFoundPage />
+                    </Layout>
+                }
+            />
+
         </Routes>
     )
 }

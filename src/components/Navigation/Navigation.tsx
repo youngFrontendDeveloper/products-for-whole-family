@@ -1,63 +1,111 @@
 import './Navigation.css';
-import { Button, Menu, Tooltip } from 'antd';
-import type { MenuProps } from 'antd';
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { MenuOutlined } from '@ant-design/icons';
+import {Button, Drawer, Menu,} from 'antd';
+import type {MenuProps} from 'antd';
+import {useState} from 'react';
+import {NavLink} from 'react-router-dom';
+import {MenuOutlined} from '@ant-design/icons';
+import {useWindowSize} from "../../hooks/useWindowSize.ts";
 
 
+export default function Navigation() {
+    const [current, setCurrent] = useState('mail');
+    // const [shouMenu, setShouMenu] = useState(false);
+    const {width} = useWindowSize();
+    //
+    // useEffect(() => {
+    //     if (width && width >= 768) {
+    //         setShouMenu(true)
+    //     }
+    // }, [width])
+    //
+    // const handleClick = () => {
+    //     setShouMenu(!shouMenu)
+    // }
+    //
+    const onClick: MenuProps['onClick'] = (e) => {
+        setOpen(false);
+        setCurrent(e.key);
+    };
 
-export default function Navigation () {
-  const [current, setCurrent] = useState('mail');
+    const [open, setOpen] = useState(false);
 
-  const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-  };
+    const showDrawer = () => {
+        setOpen(true);
+    };
 
-  type MenuItem = Required<MenuProps>['items'][number];
-  const items: MenuItem[] = [
-    {
-      label: (
-        <NavLink to="/" rel="noopener noreferrer">
-          Домашняя
-        </NavLink>
-      ),
-      key: 'home',      
-    },
-    {
-      label: ( <NavLink to="/products" rel="noopener noreferrer">
-      Продукты
-    </NavLink>),
-      key: '/products',     
-      
-    },
-    // {
-    //   label: 'Контакты',
-    //   key: 'contacts',    
-    //       },    
-  ];
+    const onClose = () => {
+        setOpen(false);
+    };
+    type MenuItem = Required<MenuProps>['items'][number];
+    const items: MenuItem[] = [
+        {
+            label: (
+                <NavLink to="/" rel="noopener noreferrer">
+                    Домашняя
+                </NavLink>
+            ),
+            key: 'home',
+        },
+        {
+            label: (<NavLink to="/products" rel="noopener noreferrer">
+                Продукты
+            </NavLink>),
+            key: '/products',
 
-  const menuStyle={ 
-    display: 'flex', 
-    width: 300,
-    backgroundColor: 'transparent'
-  }
+        },
+    ];
 
-  return (
-      <nav className="navigation">
-        <Menu 
-         style={menuStyle}
-        onClick={onClick} 
-        selectedKeys={[current]} 
-        mode="inline" 
-        items={items} 
-        />
-        {/* <Tooltip title="Меню"> */}
-          <Button type="primary" shape="circle" icon={<MenuOutlined />} />
-        {/* </Tooltip> */}
-        
-        {/* <BurgerMenu /> */}
-      </nav>
-  );
+    return (
+        <nav className="navigation">
+            {
+                width && width < 768 ? (
+                    <>
+                        <Button type="primary" onClick={showDrawer} icon={<MenuOutlined />} />
+                        <Drawer
+                            // title="Закрыть"
+                            closable={{'aria-label': 'Close Button'}}
+                            onClose={onClose}
+                            open={open}
+                        >
+                            <Menu
+                                // style={shouMenu ? {transform: "translateX(0)"} : {transform: "translateX(120%)"}}
+                                className="menu"
+                                onClick={onClick}
+                                selectedKeys={[current]}
+                                mode="inline"
+                                items={items}
+                            />
+
+                        </Drawer>
+                    </>
+                ) : (
+
+                    <Menu
+                        className="menu"
+                        onClick={onClick}
+                        selectedKeys={[current]}
+                        mode="inline"
+                        items={items}
+                    />
+                )
+            }
+            {/*<Menu*/}
+            {/*    style={shouMenu ? {transform: "translateX(0)"} : {transform: "translateX(120%)"}}*/}
+            {/*    className="menu"*/}
+            {/*    onClick={onClick}*/}
+            {/*    selectedKeys={[current]}*/}
+            {/*    mode="inline"*/}
+            {/*    items={items}*/}
+            {/*/>*/}
+
+            {/*<Button*/}
+            {/*    onClick={handleClick}*/}
+            {/*    className="burger"*/}
+            {/*    type="primary"*/}
+            {/*    shape="circle"*/}
+            {/*    icon={<MenuOutlined />}*/}
+            {/*/>*/}
+
+        </nav>
+    );
 };

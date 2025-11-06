@@ -1,6 +1,6 @@
 .logo {
   width: 90px;
-  height: 32px;
+  height: 35px;
   color: var(--foreground-primary);
   transition: 0.3s ease-in-out;
 }

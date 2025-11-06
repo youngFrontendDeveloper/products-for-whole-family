@@ -1,0 +1,25 @@
+.not-found {
+  width: 100%;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.not-found__main {
+  margin-bottom: 30px;
+  color: var(--color-red-500);
+  font-size: 100px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.not-found__text {
+  margin-bottom: 15px;
+}
+
+.not-found__link {
+  color: var(--color-red-500);
+
+  &:hover {
+    text-decoration: none;
+  }
+}
