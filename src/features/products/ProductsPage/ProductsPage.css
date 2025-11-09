@@ -1,3 +1,31 @@
+.products__title {
+  text-transform: uppercase;
+}
+
+.products__menu-wrap {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 200px;
+  margin-left: auto;
+  margin-bottom: 50px;
+}
+
+.products__menu-button {
+  border: 1px solid var(--color-grey-800);
+}
+
+.products__menu {
+  width: min-content;
+  position: absolute;
+  top: 34px;
+  right: 2px;
+  border: 1px solid var(--color-grey-800);
+  border-inline-end: 1px solid var(--color-grey-800)!important;
+  border-radius: 8px;
+  z-index: 3;
+}
+
 .products__list {
   display: flex;
   flex-wrap: wrap;

@@ -8,7 +8,7 @@ import {useWindowSize} from "../../hooks/useWindowSize.ts";
 
 
 export default function Navigation() {
-    const [current, setCurrent] = useState('mail');
+    const [current, setCurrent] = useState('/');
     // const [shouMenu, setShouMenu] = useState(false);
     const {width} = useWindowSize();
     //

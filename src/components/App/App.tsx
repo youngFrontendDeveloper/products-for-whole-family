@@ -2,13 +2,13 @@ import './App.css'
 import {Route, Routes} from 'react-router-dom';
 
 // import LayoutComponent from "../LayoutComponent/LayoutComponent.tsx";
-import ProductsPage from "../ProductsPage/ProductsPage.tsx";
-import ProductsItemPage from "../ProductsItemPage/ProductsItemPage.tsx";
-import HomePage from "../HomePage/HomePage.tsx";
+import ProductsPage from "../../features/products/ProductsPage/ProductsPage.tsx";
+import ProductsItemPage from "../../pages/ProductsItemPage/ProductsItemPage.tsx";
+import HomePage from "../../pages/HomePage/HomePage.tsx";
 import Layout from '../Layout/Layout.tsx';
 import Meta from "../../utils/Meta/Meta.tsx";
 import NotFoundPage from "../NotFoundPage/NotFoundPage.tsx";
-import CreateProductPage from "../CreateProductPage/CreateProductPage.tsx";
+import CreateProductPage from "../../features/products/CreateProductPage/CreateProductPage.tsx";
 
 export default function App() {
     return (

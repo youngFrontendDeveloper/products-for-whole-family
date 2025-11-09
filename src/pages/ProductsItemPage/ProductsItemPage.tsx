@@ -1,17 +1,17 @@
 import './ProductsItemPage.css';
 import {Link, useParams} from "react-router-dom";
-import {useGetProductByIdQuery} from "../../redux/api/products/productsApi.ts";
+import {useGetProductByIdQuery} from "../../features/products/productsApi.ts";
 import {Typography} from 'antd';
 import {Image} from "antd";
-import Star from "../Star/Star.tsx";
-import Loader from "../Loader/Loader.tsx";
-import Error from "../Error/Error.tsx";
-
+import Star from "../../components/Star/Star.tsx";
+import Loader from "../../components/Loader/Loader.tsx";
+import Error from "../../components/Error/Error.tsx";
 
 export default function ProductsItemPage() {
     const params = useParams();
     const id = params.id || "";
     const {data, isError, isLoading} = useGetProductByIdQuery(id);
+
     const wordReviews =
         data?.rating?.count.toString().endsWith("1") && !String(data?.rating?.count).endsWith("11")
             ? " отзыв"
@@ -26,6 +26,7 @@ export default function ProductsItemPage() {
         <section className="product">
             {isLoading && <Loader />}
             {isError && <Error><p>Ошибка загрузки товара</p></Error>}
+
             <Link to="/products" className="product__link">Вернуться к товарам</Link>
 
             <Image
@@ -34,7 +35,9 @@ export default function ProductsItemPage() {
                 alt={data?.title}
                 className="product__image"
             />
+
             <div className="product__info">
+
                 <Typography.Title className="product__title">
                     {data?.title}
                 </Typography.Title>
@@ -42,7 +45,7 @@ export default function ProductsItemPage() {
                 <div className="product__rating">
                     <Star width={20} />
                     <Typography.Paragraph className="product__rating-number">
-                        {data?.rating?.rate}  {data?.rating?.count} {wordReviews}
+                        {data?.rating?.rate} {data?.rating?.count} {wordReviews}
                     </Typography.Paragraph>
                 </div>
 
@@ -53,8 +56,6 @@ export default function ProductsItemPage() {
                 <Typography.Paragraph className="product__description">
                     {data?.description}
                 </Typography.Paragraph>
-
-
 
             </div>
 

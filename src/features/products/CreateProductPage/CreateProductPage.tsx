@@ -1,6 +1,8 @@
 import './CreateProductPage.css';
 import {Typography, Button, Form, Input, Select} from 'antd';
 import type {FormProps} from 'antd';
+import {useDispatch} from "react-redux";
+import {createNewProduct} from "../productsSlice.ts";
 
 type FieldType = {
     title: string;
@@ -18,8 +20,25 @@ const layout = {
 
 export default function CreateProductPage() {
     const [form] = Form.useForm();
+    const dispatch = useDispatch();
     const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
         console.log('Success:', values);
+        const newProduct = {
+            id: Date.now(),
+            title: values.title,
+            price: Number(values.price),
+            description: values.description,
+            category: values.category,
+            image: values.image,
+            isLiked: false,
+            rating: {
+                rate: 0,
+                count: 0
+            }
+        }
+        console.log(newProduct)
+        dispatch(createNewProduct(newProduct));
+        form.resetFields();
     };
 
     const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
@@ -59,6 +78,14 @@ export default function CreateProductPage() {
                     rules={[{required: true, message: 'Пожалуйста, заполните описание товара!'}]}
                 >
                     <Input />
+                </Form.Item>
+
+                <Form.Item<FieldType>
+                    label="Цена"
+                    name="price"
+                    rules={[{required: true, message: 'Пожалуйста, укажите цену товара!'}]}
+                >
+                    <Input type="number" />
                 </Form.Item>
 
                 <Form.Item<FieldType>
