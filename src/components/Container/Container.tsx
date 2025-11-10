@@ -1,9 +1,10 @@
 import './Container.css';
-import {ReactNode} from "react";
+
 import classNames from 'classnames';
+import * as React from "react";
 
 interface IContainerProps {
-    children: ReactNode;
+    children: React.ReactNode;
     mixinClass?: string;
 }
 

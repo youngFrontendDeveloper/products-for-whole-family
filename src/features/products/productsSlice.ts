@@ -11,9 +11,11 @@ export interface IProductsState {
     error: string | null;
 }
 
+const savedLocalProducts = JSON.parse(localStorage.getItem('localProducts') || '[]');
+
 const initialState: IProductsState = {
     apiProducts: [],
-    localProducts: [],
+    localProducts: savedLocalProducts,
     selectedProduct: null,
     status: "idle",
     error: null,

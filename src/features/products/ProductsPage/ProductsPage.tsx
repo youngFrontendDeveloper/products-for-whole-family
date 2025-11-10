@@ -1,7 +1,7 @@
 import './ProductsPage.css';
 import Card from 'antd/es/card/Card';
 import {Button, Menu, Popconfirm, Typography,} from 'antd';
-import {DeleteOutlined, LikeOutlined, PlusOutlined,} from '@ant-design/icons';
+import {DeleteOutlined, HeartFilled, PlusOutlined,} from '@ant-design/icons';
 import {Link, NavLink} from 'react-router-dom';
 import {useEffect, useState} from "react";
 // import {useGetProductsQuery} from "../productsApi.ts";
@@ -30,7 +30,7 @@ const menuItem = [
 
 export default function ProductsPage() {
     // const {data, error, isLoading} = useGetProductsQuery();
-    const { localProducts, status, error } = useAppSelector((state) => state.products);
+    const {localProducts, status, error} = useAppSelector((state) => state.products);
     const [toggleMenu, setToggleMenu] = useState(false);
     const [openPopconfirmId, setOpenPopconfirmId] = useState<number | null>(null);
     const [confirmLoading, setConfirmLoading] = useState(false);
@@ -126,8 +126,8 @@ export default function ProductsPage() {
                                         dispatch(likeProduct(item.id))
                                     }}
                                     >
-                                        <LikeOutlined
-                                            style={{color: item.isLiked ? "#ee43ac" : "#252825", fontSize: '20px',}}
+                                        <HeartFilled
+                                            style={{color: item.isLiked ? "#ee43ac" : "#686868", fontSize: '20px',}}
                                         />
                                     </a>,
 

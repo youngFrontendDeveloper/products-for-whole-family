@@ -1,7 +1,7 @@
 // import'./Star.css';
-import {JSX} from "react";
+import * as React from "react";
 
-    export default function Star({width}: {width: number}): JSX.Element {
+    export default function Star({width}: {width: number}): React.JSX.Element {
     return (
         <div style={{width: width}}>
             <svg

@@ -13,6 +13,12 @@ export const store = configureStore({
         getDefaultMiddleware().concat([productsApi.middleware,]),
 })
 
+store.subscribe(() => {
+    const state = store.getState();
+    const localProducts = state.products.localProducts;
+    localStorage.setItem('localProducts', JSON.stringify(localProducts));
+});
+
 // store.subscribe(() => {
 //     const state = store.getState();
 //     const selected = state.products.selectedProduct;
