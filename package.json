@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://youngFrontendDeveloper.github.io/products-for-whole-family",
+  "homepage": "https://youngFrontendDeveloper.github.io/products-for-whole-family/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

@@ -1,8 +1,9 @@
 import './ProductsFilter.css';
+// import {useState} from "react";
 import {Form, Select} from "antd";
 import type {FormProps} from 'antd';
-import {createNewProduct} from "../../features/products/productsSlice.ts";
-import {useState} from "react";
+
+
 
 type FieldType = {
     title: string;
@@ -19,7 +20,7 @@ const layout = {
 
 export default function ProductsFilter() {
     const [form] = Form.useForm();
-    const [filter, setFilter] = useState<'all' | 'liked' | 'category'>('all');
+    // const [filter, setFilter] = useState<'all' | 'liked' | 'category'>('all');
 
     const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
         console.log('Success:', values);
