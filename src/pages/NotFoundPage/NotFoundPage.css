@@ -1,0 +1,11 @@
+.not-found__result .ant-result-subtitle {
+  font-size: 20px;
+}
+
+.not-found__result .ant-result-extra {
+  margin-top: 10px;
+}
+
+.not-found__result .ant-result-extra > *:last-child {
+  margin-inline-end: auto;
+}
