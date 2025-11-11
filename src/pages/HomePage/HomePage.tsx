@@ -1,7 +1,15 @@
 import './HomePage.css';
-import {Typography} from 'antd';
+import {List, Typography} from 'antd';
 
-const {Title, Paragraph,} = Typography;
+const {Title,} = Typography;
+
+const data = [
+    'Широкий ассортимент',
+    'Качественные товары',
+    'Удобный поиск',
+    'Быстрая и бережная доставка',
+    'Приемлемые цены',
+];
 
 export default function HomePage() {
     return (
@@ -9,12 +17,22 @@ export default function HomePage() {
 
             <Typography>
 
-                <Title>Тестовое задание от Экосистема Альфа</Title>
+                <Title className="home__title">Магазин для всей семьи</Title>
+                <Title level={4} italic className="home__subtitle">Откройте для себя мир моды, технологий и
+                    роскоши</Title>
 
-                <Paragraph>
-                    В данном проекте использованы такие инструменты, как библиотеки React.js, React Router Dom,
-                    react-hook-form, UI Ant Design
-                </Paragraph>
+                <List
+                    size="small"
+                    header={<div className="home__list-title">Почему мы? -</div>}
+                    footer={<div className="home__list-footer">Мы работаем для Вас!</div>}
+                    bordered
+                    dataSource={data}
+                    renderItem={(item) => <List.Item>{item}</List.Item>}
+                />
+
+                {/*    <Paragraph className="home__text">*/}
+                {/*    Посмотрите,- подобрали специально для Вас:*/}
+                {/*</Paragraph>*/}
 
             </Typography>
 

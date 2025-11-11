@@ -1,0 +1,16 @@
+.home__title {
+    font-size: 40px;
+}
+
+.home__subtitle {
+    font-size: 24px;
+}
+
+.home__list-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.home__list-footer {
+  font-weight: 500;
+}

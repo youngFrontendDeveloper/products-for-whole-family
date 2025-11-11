@@ -41,7 +41,7 @@ export default function Navigation() {
         {
             label: (
                 <NavLink to="/" rel="noopener noreferrer">
-                    Домашняя
+                    Главная
                 </NavLink>
             ),
             key: 'home',
