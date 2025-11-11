@@ -22,14 +22,15 @@ export default function ProductsItemPage() {
                 ? " отзыва"
                 : " отзывов";
 
-    console.log(data)
     return (
         <section className="product">
+
             <LinkComponent href="/products" mixinClass="product__link">
                 Вернуться к товарам
             </LinkComponent>
 
             {isLoading && <Loader />}
+
             {isError && <Error><p>Ошибка загрузки товара</p></Error>}
 
             <div className="product__info-wrap">
@@ -62,7 +63,9 @@ export default function ProductsItemPage() {
                     </Typography.Paragraph>
 
                 </div>
+
             </div>
+
         </section>
     );
 }

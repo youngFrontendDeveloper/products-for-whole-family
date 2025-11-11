@@ -1,19 +1,17 @@
-@use "../../../styles/variables" as variable;
-
-.error { 
+.error {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); 
-  width: 280px;  
+  transform: translate(-50%, -50%);
+  width: 280px;
   padding: 30px;
-  color: variable.$color-orange;
+  color: var(--color-red-500);
   font-size: 14px;
   font-weight: 400;
-  line-height: 19.6px;
+  line-height: 1.2;
   text-align: center;
-  background-color: variable.$color-white;
-  border: 1px solid variable.$color-orange;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-grey-300);
   border-radius: 4px;
-  box-shadow: 0 6px 10px 0 variable.$color-dark; 
+  box-shadow: 0 6px 10px 0 var(--color-grey-500);
 }

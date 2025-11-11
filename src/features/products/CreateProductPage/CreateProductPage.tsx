@@ -20,7 +20,6 @@ const layout = {
     wrapperCol: {span: 16},
 };
 
-
 export default function CreateProductPage() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -48,6 +47,7 @@ export default function CreateProductPage() {
 
         setSuccess(true);
         setError(false);
+
         form.resetFields();
     };
 
@@ -62,6 +62,7 @@ export default function CreateProductPage() {
 
     return (
         <section className="create-product">
+
             <Typography.Title>
                 Создать новый товар
             </Typography.Title>

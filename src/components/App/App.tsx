@@ -1,7 +1,4 @@
-import './App.css'
 import {Route, Routes} from 'react-router-dom';
-
-// import LayoutComponent from "../LayoutComponent/LayoutComponent.tsx";
 import ProductsPage from "../../features/products/ProductsPage/ProductsPage.tsx";
 import ProductsItemPage from "../../pages/ProductsItemPage/ProductsItemPage.tsx";
 import HomePage from "../../pages/HomePage/HomePage.tsx";
@@ -13,6 +10,7 @@ import CreateProductPage from "../../features/products/CreateProductPage/CreateP
 export default function App() {
     return (
         <Routes>
+
             <Route
                 path="/"
                 element={
@@ -64,6 +62,7 @@ export default function App() {
                     </Layout>
                 }
             />
+
             <Route
                 path="*"
                 element={

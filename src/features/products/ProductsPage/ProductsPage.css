@@ -40,7 +40,6 @@
 .products__item {
   width: 300px;
   border-color: var(--color-grey-300);
-    /*padding: 10px;*/
 }
 
 .products__image {
@@ -86,5 +85,4 @@
   .products__list {
     justify-content: space-evenly;
   }
-
 }

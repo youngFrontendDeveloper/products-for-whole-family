@@ -1,6 +1,6 @@
 import './ProductsPage.css';
 import Card from 'antd/es/card/Card';
-import {Button, Menu, Popconfirm, Typography,} from 'antd';
+import {Button, Menu, Pagination, Popconfirm, Typography,} from 'antd';
 import {DeleteOutlined, HeartFilled, PlusOutlined,} from '@ant-design/icons';
 import {Link, NavLink} from 'react-router-dom';
 import {useEffect, useState} from "react";
@@ -34,7 +34,12 @@ export default function ProductsPage() {
     const [toggleMenu, setToggleMenu] = useState(false);
     const [openPopconfirmId, setOpenPopconfirmId] = useState<number | null>(null);
     const [confirmLoading, setConfirmLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
     const dispatch = useAppDispatch();
+    const pageSize = 6;
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = currentPage * pageSize;
+    const currentProducts = filteredProducts?.slice(startIndex, endIndex);
 
     useEffect(() => {
         if (!localProducts) return;
@@ -96,6 +101,7 @@ export default function ProductsPage() {
                     onClick={handleOpenMenu}
                     className="products__menu-button"
                 />
+
                 <Menu
                     className="products__menu"
                     style={toggleMenu ? {display: "block"} : {display: "none"}}
@@ -107,14 +113,26 @@ export default function ProductsPage() {
 
             <ProductsFilter setFilter={setFilter} />
 
+            <Pagination
+                defaultCurrent={1}
+                current={currentPage}
+                pageSize={pageSize}
+                total={filteredProducts.length}
+                onChange={(page) => setCurrentPage(page)}
+                style={{marginTop: 24, marginBottom: 30, textAlign: 'center'}}
+                showSizeChanger={false}
+            />
+
             <ul className="products__list">
                 {status === 'loading' && <Loader />}
-                {status === 'failed' && <Error><p>{error}</p></Error>}
+
+                {status === 'failed' && <Error>{error}</Error>}
+
                 {
-                    filteredProducts?.map(item => (
+                    currentProducts?.map(item => (
                         <Link
-                            to={`/product/${item.id}`} className="products__link"
-                            // onClick={() => dispatch(selectProduct(item))}
+                            to={`/product/${item.id}`}
+                            className="products__link"
                         >
                             <Card
                                 className="products__item"
@@ -178,10 +196,21 @@ export default function ProductsPage() {
                                 <p className="products__price">${item.price}</p>
 
                             </Card>
+
                         </Link>
                     ))
                 }
             </ul>
+
+            <Pagination
+                defaultCurrent={1}
+                current={currentPage}
+                pageSize={pageSize}
+                total={filteredProducts.length}
+                onChange={(page) => setCurrentPage(page)}
+                style={{marginTop: 24, marginBottom: 30, textAlign: 'center'}}
+                showSizeChanger={false}
+            />
         </section>
     );
 }

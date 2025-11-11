@@ -8,7 +8,7 @@ export const useWindowSize = () => {
 
     useEffect(() => {
 
-        if(typeof window === "undefined") return;
+        if (typeof window === "undefined") return;
         const handleResize = () => {
             setWindowSize({
                 width: window.innerWidth,
@@ -19,9 +19,11 @@ export const useWindowSize = () => {
         handleResize();
 
         window.addEventListener('resize', handleResize);
+
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
     return windowSize;
 };

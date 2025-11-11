@@ -28,7 +28,6 @@ export const fetchProducts = createAsyncThunk<IProduct[]>(
             const res = await fetch('https://fakestoreapi.com/products');
 
             if (!res.ok) {
-                // можно вернуть rejectWithValue, если хочешь детальнее обрабатывать ошибки
                 return thunkAPI.rejectWithValue(`HTTP error ${res.status}`);
             }
 
@@ -78,7 +77,6 @@ export const productsSlice = createSlice({
                 state.status = "succeeded";
                 state.apiProducts = action.payload;
 
-                // если localProducts пуст, заполняем его товарами с API
                 if (state.localProducts.length === 0) {
                     state.localProducts = action.payload;
                 }
@@ -91,7 +89,7 @@ export const productsSlice = createSlice({
 
 })
 
-export const {selectProduct, deleteProduct, createNewProduct, likeProduct} = productsSlice.actions
+export const { deleteProduct, createNewProduct, likeProduct} = productsSlice.actions
 export default productsSlice.reducer
 
 export const selectAllProducts = (state: RootState) => state.products.localProducts;

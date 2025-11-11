@@ -8,12 +8,6 @@ export const productsApi = createApi({
     }),
     tagTypes: ['Products'], // чтобы можно было обновлять кэш
     endpoints: (builder) => ({
-        getProducts: builder.query<IProduct[] , void>({
-            query: () => ({
-                url: import.meta.env.VITE_PRODUCTS_URL,
-            }),
-            providesTags: ['Products'],
-        }),
 
         getProductById: builder.query<IProduct, string>({
             query: (id) => `${import.meta.env.VITE_PRODUCTS_URL}/${id}`,
@@ -21,5 +15,5 @@ export const productsApi = createApi({
     })
 })
 
-export const {useGetProductsQuery, useGetProductByIdQuery} = productsApi;
+export const {useGetProductByIdQuery} = productsApi;
 

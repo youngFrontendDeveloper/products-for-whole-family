@@ -28,21 +28,10 @@
   --mobile-menu-background: var(--color-grey-100);
   --background-primary: rgba(245, 245, 244, 0.5);
   --foreground-primary: var(--color-grey-800);
-  /*--background-dropdown: var(--color-grey-200);*/
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.1;
   font-weight: 400;
-
-  /*color-scheme: light dark;*/
-  /*color: rgba(255, 255, 255, 0.87);*/
-  /*background-color: #242424;*/
-
-  /*font-synthesis: none;*/
-  /*text-rendering: optimizeLegibility;*/
-  /*-webkit-font-smoothing: antialiased;*/
-  /*-moz-osx-font-smoothing: grayscale;*/
-
 }
 
 * {

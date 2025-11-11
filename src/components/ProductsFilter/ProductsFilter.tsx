@@ -2,13 +2,15 @@ import './ProductsFilter.css';
 import {Select} from "antd";
 import type {FilterType} from "../../types.ts";
 
-export default function ProductsFilter({setFilter}: {setFilter: (filter: FilterType) => void}) {
+export default function ProductsFilter({setFilter}: { setFilter: (filter: FilterType) => void }) {
 
-    const onCategoryChange = (value:  FilterType) => {
+    const onCategoryChange = (value: FilterType) => {
         setFilter(value);
     };
+
     return (
         <section className="products-filter">
+
             <p className="products-filter__title">Фильтровать товары по</p>
 
             <Select
