@@ -1,11 +1,12 @@
 import './ProductsItemPage.css';
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {useGetProductByIdQuery} from "../../features/products/productsApi.ts";
 import {Typography} from 'antd';
 import {Image} from "antd";
 import Star from "../../components/Star/Star.tsx";
 import Loader from "../../components/Loader/Loader.tsx";
 import Error from "../../components/Error/Error.tsx";
+import LinkComponent from "../../components/LinkComponent/LinkComponent.tsx";
 
 export default function ProductsItemPage() {
     const params = useParams();
@@ -24,41 +25,44 @@ export default function ProductsItemPage() {
     console.log(data)
     return (
         <section className="product">
+            <LinkComponent href="/products" mixinClass="product__link">
+                Вернуться к товарам
+            </LinkComponent>
+
             {isLoading && <Loader />}
             {isError && <Error><p>Ошибка загрузки товара</p></Error>}
 
-            <Link to="/products" className="product__link">Вернуться к товарам</Link>
+            <div className="product__info-wrap">
+                <Image
+                    width={300}
+                    src={data?.image}
+                    alt={data?.title}
+                    className="product__image"
+                />
 
-            <Image
-                width={300}
-                src={data?.image}
-                alt={data?.title}
-                className="product__image"
-            />
+                <div className="product__info">
 
-            <div className="product__info">
+                    <Typography.Title className="product__title">
+                        {data?.title}
+                    </Typography.Title>
 
-                <Typography.Title className="product__title">
-                    {data?.title}
-                </Typography.Title>
+                    <div className="product__rating">
+                        <Star width={20} />
+                        <Typography.Paragraph className="product__rating-number">
+                            {data?.rating?.rate} {data?.rating?.count} {wordReviews}
+                        </Typography.Paragraph>
+                    </div>
 
-                <div className="product__rating">
-                    <Star width={20} />
-                    <Typography.Paragraph className="product__rating-number">
-                        {data?.rating?.rate} {data?.rating?.count} {wordReviews}
+                    <Typography.Paragraph className="product__price">
+                        ${data?.price}
                     </Typography.Paragraph>
+
+                    <Typography.Paragraph className="product__description">
+                        {data?.description}
+                    </Typography.Paragraph>
+
                 </div>
-
-                <Typography.Paragraph className="product__price">
-                    ${data?.price}
-                </Typography.Paragraph>
-
-                <Typography.Paragraph className="product__description">
-                    {data?.description}
-                </Typography.Paragraph>
-
             </div>
-
         </section>
     );
 }

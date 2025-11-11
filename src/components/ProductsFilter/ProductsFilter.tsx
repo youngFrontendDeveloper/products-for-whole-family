@@ -1,62 +1,31 @@
 import './ProductsFilter.css';
-// import {useState} from "react";
-import {Form, Select} from "antd";
-import type {FormProps} from 'antd';
+import {Select} from "antd";
+import type {FilterType} from "../../types.ts";
 
+export default function ProductsFilter({setFilter}: {setFilter: (filter: FilterType) => void}) {
 
-
-type FieldType = {
-    title: string;
-    description: string;
-    image: string;
-    category: string;
-    price: number;
-};
-
-const layout = {
-    labelCol: {span: 8},
-    wrapperCol: {span: 16},
-};
-
-export default function ProductsFilter() {
-    const [form] = Form.useForm();
-    // const [filter, setFilter] = useState<'all' | 'liked' | 'category'>('all');
-
-    const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-        console.log('Success:', values);
-
+    const onCategoryChange = (value:  FilterType) => {
+        setFilter(value);
     };
     return (
         <section className="products-filter">
-            <p>Фильтровать товары по</p>
+            <p className="products-filter__title">Фильтровать товары по</p>
 
-            <Form
-                {...layout}
-                form={form}
-                name="control-hooks"
-                onFinish={onFinish}
-                autoComplete="off"
-                style={{maxWidth: 600}}
-            >
-                <Form.Item
-                    name="category" label="Категория товара"
-                    rules={[{required: true, message: 'Пожалуйста, выберите категорию товара'},]}
-                >
-                    <Select
-                        allowClear
-                        placeholder="Выберите категорию товара"
-                        // onChange={onCategoryChange}
-                        options={[
-                            {label: 'Все', value: 'all'},
-                            {label: 'Избранное', value: 'favorite'},
-                            {label: 'Мужская одежда', value: 'mens-clothing'},
-                            {label: 'Ювелирные изделия', value: 'jewelery'},
-                            {label: 'Электроника', value: 'electronics'},
-                            {label: 'Женская одежда', value: 'womens-clothing'},
-                        ]}
-                    />
-                </Form.Item>
-            </Form>
+            <Select
+                className="products-filter__select"
+                allowClear
+                placeholder="Выберите категорию товара"
+                onChange={onCategoryChange}
+                options={[
+                    {label: 'Все', value: 'all'},
+                    {label: 'Избранное', value: 'favorite'},
+                    {label: 'Мужская одежда', value: "men's clothing"},
+                    {label: 'Ювелирные изделия', value: 'jewelery'},
+                    {label: 'Электроника', value: 'electronics'},
+                    {label: 'Женская одежда', value: "women's clothing"},
+                ]}
+            />
+
         </section>
     );
 };

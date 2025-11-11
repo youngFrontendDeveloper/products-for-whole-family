@@ -1,10 +1,11 @@
 import './Logo.css';
 import * as React from "react";
 import classNames from "classnames";
+import {Link} from "react-router-dom";
 
 export default function Logo({mixinClass}: { mixinClass?: string }): React.JSX.Element {
     return (
-        <a href="/" className={classNames("logo", mixinClass)}>
+        <Link to="/" className={classNames("logo", mixinClass)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="90" height="35" viewBox="0 0 90 35">
                 <text
                     x="45"
@@ -33,6 +34,6 @@ export default function Logo({mixinClass}: { mixinClass?: string }): React.JSX.E
                     для всей семьи
                 </text>
             </svg>
-        </a>
+        </Link>
     );
 };

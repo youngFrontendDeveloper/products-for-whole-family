@@ -1,24 +1,23 @@
-.product {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-}
-
-.product__link {
-  width: 100%;
-  margin-bottom: 20px;
-  color: var(--color-red-500);
-
-}
-
-.product__link:hover {
-  text-decoration: none;
-}
+/*.product {*/
+/*  display: flex;*/
+/*  flex-wrap: wrap;*/
+/*  gap: 30px;*/
+/*}*/
 
 .product__title {
   width: 100%;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.product__link {
+  margin-bottom: 50px;
+}
+
+.product__info-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 
 .product__info {

@@ -1,0 +1,18 @@
+.products-filter {
+  width: 90%;
+  margin: 0 auto 40px auto;
+}
+
+.products-filter__title {
+  margin-bottom: 20px;
+}
+
+.products-filter__select {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .products-filter {
+    width: 50%;
+  }
+}

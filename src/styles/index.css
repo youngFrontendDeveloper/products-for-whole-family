@@ -14,7 +14,6 @@
   --color-blue-30: #3a91ed33;
   --color-blue-50: #75afef;
   --color-blue-100: #1677ff;
-  /*--color-blue-100: #0378f9;*/
   --color-blue-500: #02458e;
   --color-blue-800: #02264e;
   --color-blue-900: #001124;
@@ -42,7 +41,7 @@
   /*text-rendering: optimizeLegibility;*/
   /*-webkit-font-smoothing: antialiased;*/
   /*-moz-osx-font-smoothing: grayscale;*/
-  /*color: #686868*/
+
 }
 
 * {

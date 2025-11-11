@@ -1,0 +1,10 @@
+.link {
+  display: block;
+  width: max-content;
+  color: var(--color-red-500);
+  font-size: 16px;
+}
+
+.link:hover {
+  text-decoration: none;
+}

@@ -4,7 +4,6 @@ import {Button, Menu, Popconfirm, Typography,} from 'antd';
 import {DeleteOutlined, HeartFilled, PlusOutlined,} from '@ant-design/icons';
 import {Link, NavLink} from 'react-router-dom';
 import {useEffect, useState} from "react";
-// import {useGetProductsQuery} from "../productsApi.ts";
 import Error from "../../../components/Error/Error.tsx";
 import Loader from "../../../components/Loader/Loader.tsx";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks.ts";
@@ -12,10 +11,9 @@ import {
     deleteProduct,
     fetchProducts,
     likeProduct,
-    // selectAllProducts,
-    // selectProduct,
-    // setAllProducts
 } from "../productsSlice.ts";
+import ProductsFilter from "../../../components/ProductsFilter/ProductsFilter.tsx";
+import type {FilterType} from "../../../types.ts";
 
 const menuItem = [
     {
@@ -28,20 +26,32 @@ const menuItem = [
     },
 ]
 
+
 export default function ProductsPage() {
-    // const {data, error, isLoading} = useGetProductsQuery();
+    const [filter, setFilter] = useState<FilterType>('all');
     const {localProducts, status, error} = useAppSelector((state) => state.products);
+    const [filteredProducts, setFilteredProducts] = useState(localProducts);
     const [toggleMenu, setToggleMenu] = useState(false);
     const [openPopconfirmId, setOpenPopconfirmId] = useState<number | null>(null);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const dispatch = useAppDispatch();
-    // const localProducts = useAppSelector(selectAllProducts);
 
-    // useEffect(() => {
-    //     if (allProducts) {
-    //         setProducts((prevProducts) => [...prevProducts, ...allProducts]);
-    //     }
-    // }, [data])
+    useEffect(() => {
+        if (!localProducts) return;
+
+        switch (filter) {
+            case 'all':
+                setFilteredProducts(localProducts);
+                break;
+            case 'favorite':
+                setFilteredProducts(localProducts.filter(item => item.isLiked));
+                break;
+            default:
+                setFilteredProducts(localProducts.filter(item => item.category === filter));
+                break;
+        }
+
+    }, [filter, localProducts])
 
     useEffect(() => {
         dispatch(fetchProducts());
@@ -95,11 +105,13 @@ export default function ProductsPage() {
                 />
             </div>
 
+            <ProductsFilter setFilter={setFilter} />
+
             <ul className="products__list">
                 {status === 'loading' && <Loader />}
                 {status === 'failed' && <Error><p>{error}</p></Error>}
                 {
-                    localProducts?.map(item => (
+                    filteredProducts?.map(item => (
                         <Link
                             to={`/product/${item.id}`} className="products__link"
                             // onClick={() => dispatch(selectProduct(item))}

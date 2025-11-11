@@ -3,6 +3,7 @@ import {Typography, Button, Form, Input, Select} from 'antd';
 import type {FormProps} from 'antd';
 import {useDispatch} from "react-redux";
 import {createNewProduct} from "../productsSlice.ts";
+import LinkComponent from "../../../components/LinkComponent/LinkComponent.tsx";
 
 type FieldType = {
     title: string;
@@ -36,7 +37,7 @@ export default function CreateProductPage() {
                 count: 0
             }
         }
-        
+
         dispatch(createNewProduct(newProduct));
         form.resetFields();
     };
@@ -54,6 +55,10 @@ export default function CreateProductPage() {
             <Typography.Title>
                 Создать новый товар
             </Typography.Title>
+
+            <LinkComponent href="/products" mixinClass="create-product__link">
+                Вернуться к товарам
+            </LinkComponent>
 
             <Form
                 {...layout}

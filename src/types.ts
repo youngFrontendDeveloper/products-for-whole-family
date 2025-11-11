@@ -1,0 +1,1 @@
+export type FilterType = 'all' | 'favorite' | "men's clothing" | 'jewelery' | 'electronics' | "women's clothing";
