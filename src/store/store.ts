@@ -19,15 +19,6 @@ store.subscribe(() => {
     localStorage.setItem('localProducts', JSON.stringify(localProducts));
 });
 
-// store.subscribe(() => {
-//     const state = store.getState();
-//     const selected = state.products.selectedProduct;
-//     if (selected) {
-//         sessionStorage.setItem('selectedProduct', JSON.stringify(selected));
-//     } else {
-//         sessionStorage.removeItem('selectedProduct');
-//     }
-// });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

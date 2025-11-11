@@ -36,7 +36,7 @@ export default function CreateProductPage() {
                 count: 0
             }
         }
-        console.log(newProduct)
+        
         dispatch(createNewProduct(newProduct));
         form.resetFields();
     };
