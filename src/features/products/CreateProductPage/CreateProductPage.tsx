@@ -82,6 +82,9 @@ export default function CreateProductPage() {
                         onFinishFailed={onFinishFailed}
                         autoComplete="off"
                         style={{maxWidth: 800}}
+                        labelCol={{flex: '230px'}}
+                        labelAlign="left"
+
                     >
                         <Form.Item<FieldType>
                             label="Название товара"
