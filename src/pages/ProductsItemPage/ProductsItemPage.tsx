@@ -3,15 +3,30 @@ import {useParams} from "react-router-dom";
 import {useGetProductByIdQuery} from "../../features/products/productsApi.ts";
 import {Typography} from 'antd';
 import {Image} from "antd";
+import {message} from 'antd';
 import Star from "../../components/Star/Star.tsx";
 import Loader from "../../components/Loader/Loader.tsx";
-import Error from "../../components/Error/Error.tsx";
 import LinkComponent from "../../components/LinkComponent/LinkComponent.tsx";
+import {useEffect} from "react";
 
 export default function ProductsItemPage() {
     const params = useParams();
     const id = params.id || "";
     const {data, isError, isLoading} = useGetProductByIdQuery(id);
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const error = () => {
+        messageApi.open({
+            type: 'error',
+            content: 'Не удалось загрузить данные товара ',
+        });
+    };
+
+    useEffect(() => {
+        if (isError) {
+            error();
+        }
+    }, [isError]);
 
     const wordReviews =
         data?.rating?.count.toString().endsWith("1") && !String(data?.rating?.count).endsWith("11")
@@ -25,13 +40,13 @@ export default function ProductsItemPage() {
     return (
         <section className="product">
 
+            {contextHolder}
+
             <LinkComponent href="/products" mixinClass="product__link">
                 Вернуться к товарам
             </LinkComponent>
 
             {isLoading && <Loader />}
-
-            {isError && <Error><p>Ошибка загрузки товара</p></Error>}
 
             <div className="product__info-wrap">
                 <Image

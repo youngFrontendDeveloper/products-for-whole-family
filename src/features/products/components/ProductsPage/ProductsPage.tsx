@@ -1,19 +1,18 @@
 import './ProductsPage.css';
 import Card from 'antd/es/card/Card';
-import {Button, Menu, Pagination, Popconfirm, Typography,} from 'antd';
+import {Button, Menu, message, Pagination, Popconfirm, Typography,} from 'antd';
 import {DeleteOutlined, HeartFilled, PlusOutlined,} from '@ant-design/icons';
 import {Link, NavLink} from 'react-router-dom';
 import {useEffect, useState} from "react";
-import Error from "../../../components/Error/Error.tsx";
-import Loader from "../../../components/Loader/Loader.tsx";
-import {useAppDispatch, useAppSelector} from "../../../store/hooks.ts";
+import Loader from "../../../../components/Loader/Loader.tsx";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks.ts";
 import {
     deleteProduct,
     fetchProducts,
     likeProduct,
-} from "../productsSlice.ts";
-import ProductsFilter from "../../../components/ProductsFilter/ProductsFilter.tsx";
-import type {FilterType} from "../../../types.ts";
+} from "../../productsSlice.ts";
+import ProductsFilter from "../../../../components/ProductsFilter/ProductsFilter.tsx";
+import type {FilterType} from "../../../../types.ts";
 
 const menuItem = [
     {
@@ -29,7 +28,7 @@ const menuItem = [
 
 export default function ProductsPage() {
     const [filter, setFilter] = useState<FilterType>('all');
-    const {localProducts, status, error} = useAppSelector((state) => state.products);
+    const {localProducts, status, productsError} = useAppSelector((state) => state.products);
     const [filteredProducts, setFilteredProducts] = useState(localProducts);
     const [toggleMenu, setToggleMenu] = useState(false);
     const [openPopconfirmId, setOpenPopconfirmId] = useState<number | null>(null);
@@ -40,6 +39,20 @@ export default function ProductsPage() {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = currentPage * pageSize;
     const currentProducts = filteredProducts?.slice(startIndex, endIndex);
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const error = () => {
+        messageApi.open({
+            type: 'error',
+            content: 'Не удалось загрузить товары',
+        });
+    };
+
+    useEffect(() => {
+        if (productsError) {
+            error();
+        }
+    }, [productsError]);
 
     useEffect(() => {
         if (!localProducts) return;
@@ -61,6 +74,12 @@ export default function ProductsPage() {
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
+
+    // useEffect(() => {
+    //     if (error) {
+    //         message.error('Не удалось загрузить данные с сервера.');
+    //     }
+    // }, [error]);
 
     const showPopconfirm = (productId: number) => {
         setOpenPopconfirmId(productId);
@@ -89,6 +108,7 @@ export default function ProductsPage() {
 
     return (
         <section className="products">
+            {contextHolder}
 
             <Typography.Title className="products__title">
                 С любовью - для вас
@@ -126,7 +146,7 @@ export default function ProductsPage() {
             <ul className="products__list">
                 {status === 'loading' && <Loader />}
 
-                {status === 'failed' && <Error>{error}</Error>}
+                {/*{status === 'failed' && <Error>{error}</Error>}*/}
 
                 {
                     currentProducts?.map(item => (

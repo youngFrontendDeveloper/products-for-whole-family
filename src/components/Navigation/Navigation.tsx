@@ -7,7 +7,7 @@ import {MenuOutlined} from '@ant-design/icons';
 import {useWindowSize} from "../../hooks/useWindowSize.ts";
 
 export default function Navigation() {
-    const [current, setCurrent] = useState('/');
+    const [current, setCurrent] = useState('home');
     const {width} = useWindowSize();
     const [open, setOpen] = useState(false);
     type MenuItem = Required<MenuProps>['items'][number];
@@ -25,9 +25,11 @@ export default function Navigation() {
                 <NavLink to="/products" rel="noopener noreferrer">
                     Продукты
                 </NavLink>),
-            key: '/products',
+            key: 'products',
         },
     ];
+
+    console.log(current)
 
     const onClick: MenuProps['onClick'] = (e) => {
         setOpen(false);

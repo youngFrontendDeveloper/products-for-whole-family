@@ -8,7 +8,7 @@ export interface IProductsState {
     localProducts: IProduct[];
     selectedProduct: IProduct | null;
     status: "idle" | "loading" | "succeeded" | "failed";
-    error: string | null;
+    productsError: string | null;
 }
 
 const savedLocalProducts = JSON.parse(localStorage.getItem('localProducts') || '[]');
@@ -18,14 +18,15 @@ const initialState: IProductsState = {
     localProducts: savedLocalProducts,
     selectedProduct: null,
     status: "idle",
-    error: null,
+    productsError: null,
 }
 
 export const fetchProducts = createAsyncThunk<IProduct[]>(
     'products/fetchProducts',
     async (_, thunkAPI) => {
         try {
-            const res = await fetch('https://fakestoreapi.com/products');
+            const res = await fetch(`${import.meta.env.VITE_BASE_URL}/${import.meta.env.VITE_PRODUCTS_URL}`);
+            // const res = await fetch('https://fakestoreapi.com/products');
 
             if (!res.ok) {
                 return thunkAPI.rejectWithValue(`HTTP error ${res.status}`);
@@ -71,7 +72,7 @@ export const productsSlice = createSlice({
         builder
             .addCase(fetchProducts.pending, (state) => {
                 state.status = "loading";
-                state.error = null;
+                state.productsError = null;
             })
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.status = "succeeded";
@@ -83,13 +84,13 @@ export const productsSlice = createSlice({
             })
             .addCase(fetchProducts.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message || 'Ошибка загрузки товаров';
+                state.productsError = action.error.message || 'Ошибка загрузки товаров';
             });
     }
 
 })
 
-export const { deleteProduct, createNewProduct, likeProduct} = productsSlice.actions
+export const {deleteProduct, createNewProduct, likeProduct} = productsSlice.actions
 export default productsSlice.reducer
 
 export const selectAllProducts = (state: RootState) => state.products.localProducts;

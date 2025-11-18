@@ -2,8 +2,8 @@ import './CreateProductPage.css';
 import {Typography, Button, Form, Input, Select, Result} from 'antd';
 import type {FormProps} from 'antd';
 import {useDispatch} from "react-redux";
-import {createNewProduct} from "../productsSlice.ts";
-import LinkComponent from "../../../components/LinkComponent/LinkComponent.tsx";
+import {createNewProduct} from "../../productsSlice.ts";
+import LinkComponent from "../../../../components/LinkComponent/LinkComponent.tsx";
 import {useState} from "react";
 import {Link} from "react-router-dom";
 

@@ -1,11 +1,11 @@
 import {Route, Routes} from 'react-router-dom';
-import ProductsPage from "../../features/products/ProductsPage/ProductsPage.tsx";
+import ProductsPage from "../../features/products/components/ProductsPage/ProductsPage.tsx";
 import ProductsItemPage from "../../pages/ProductsItemPage/ProductsItemPage.tsx";
 import HomePage from "../../pages/HomePage/HomePage.tsx";
 import Layout from '../Layout/Layout.tsx';
 import Meta from "../../utils/Meta/Meta.tsx";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage.tsx";
-import CreateProductPage from "../../features/products/CreateProductPage/CreateProductPage.tsx";
+import CreateProductPage from "../../features/products/components/CreateProductPage/CreateProductPage.tsx";
 
 export default function App() {
     return (
