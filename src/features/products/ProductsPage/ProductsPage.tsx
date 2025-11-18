@@ -149,7 +149,12 @@ export default function ProductsPage() {
                                 }
                                 actions={[
                                     <a
-                                        style={{height: "100%"}}
+                                        style={{
+                                            height: "100%",
+                                            // display: "flex",
+                                            // alignItems: "center",
+                                            // justifyContent: "center",
+                                        }}
                                         key="like" onClick={(e) => {
                                         e.preventDefault();
                                         e.stopPropagation();
@@ -190,6 +195,12 @@ export default function ProductsPage() {
                                         </Popconfirm>
                                     </a>,
                                 ]}
+                                styles={{
+                                    actions: {
+                                        display: "flex",
+                                        alignItems: "center"
+                                    },
+                                }}
                             >
                                 <h3 className="products__title">{item.title}</h3>
                                 <p className="products__description">{item.description}</p>
